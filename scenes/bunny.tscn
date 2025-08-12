@@ -98,3 +98,8 @@ frame_progress = 0.646092
 position = Vector2(0, -2)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_qn21b")
+
+[node name="FloorTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="FloorTimer" to="." method="_on_floor_timer_timeout"]

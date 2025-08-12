@@ -7,7 +7,6 @@ const max_y = 1000
 
 func _process(_delta: float) -> void:
 	delta_y = (start_pos.global_position.y - bunny.global_position.y) / max_y
-	print(delta_y)
 	var mod = 1 - clamp(delta_y, start_pos.global_position.y, max_y)
 	bunny.modulate = Color(mod, 1., mod, 1.)
 

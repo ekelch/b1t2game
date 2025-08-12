@@ -38,7 +38,7 @@ zoom = Vector2(2, 2)
 process_callback = 0
 limit_bottom = 190
 position_smoothing_enabled = true
-position_smoothing_speed = 3.0
+position_smoothing_speed = 7.0
 
 [node name="Killzone" type="Area2D" parent="."]
 collision_mask = 2
