@@ -100,6 +100,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_qn21b")
 
 [node name="FloorTimer" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true
 
 [connection signal="timeout" from="FloorTimer" to="." method="_on_floor_timer_timeout"]
