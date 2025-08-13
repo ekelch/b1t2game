@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://walbpjbi5rfc"]
+
+[ext_resource type="AudioStream" uid="uid://bu5kc1eyufil2" path="res://assets/piano.mp3" id="1_jxdhu"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_jxdhu")
+autoplay = true
+bus = &"Music"
