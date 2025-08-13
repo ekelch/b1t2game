@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
 
-const SPEED = 260.0
+const MAX_SPEED = 260.0
 const JUMP_VELOCITY = -400.0
-const BOOST_MODIFIER = 1.4
 const GRAV_MOD_SCALAR = 2.5
+const accel = 900
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var floor_timer: Timer = $FloorTimer
@@ -27,18 +27,17 @@ func _physics_process(delta: float) -> void:
 		jump()
 
 	var direction := Input.get_axis("left", "right")
-	var boosted := Input.is_action_pressed("boost")
-	handle_direction(direction, boosted)
+	handle_direction(direction, delta)
 
 	move_and_slide()
 
-func handle_direction(direction: float, boosted: bool):
+func handle_direction(direction: float, delta: float):
 	if direction:
-		velocity.x = direction * SPEED * (BOOST_MODIFIER if boosted else 1.)
+		velocity.x = clamp(velocity.x + direction * accel * delta, -MAX_SPEED, MAX_SPEED) 
 		sprite.play("running")
 		sprite.flip_h = true if direction < 0 else false
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, accel * delta)
 		sprite.play("idle")
 
 func jump():

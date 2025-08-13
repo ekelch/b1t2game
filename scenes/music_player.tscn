@@ -1,8 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://walbpjbi5rfc"]
+[gd_scene load_steps=3 format=3 uid="uid://walbpjbi5rfc"]
 
-[ext_resource type="AudioStream" uid="uid://bu5kc1eyufil2" path="res://assets/piano.mp3" id="1_jxdhu"]
+[ext_resource type="AudioStream" uid="uid://bu5kc1eyufil2" path="res://assets/music/piano.mp3" id="1_jxdhu"]
+[ext_resource type="Script" uid="uid://6aroiibrfw1j" path="res://scenes/music_player.gd" id="2_ql6qh"]
 
-[node name="MusicPlayer" type="AudioStreamPlayer2D"]
+[node name="Music" type="Node2D"]
+script = ExtResource("2_ql6qh")
+
+[node name="Player" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_jxdhu")
 autoplay = true
 bus = &"Music"
+
+[node name="IntervalTimer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+
+[connection signal="finished" from="Player" to="." method="_on_player_finished"]
+[connection signal="timeout" from="IntervalTimer" to="." method="_on_interval_timer_timeout"]
