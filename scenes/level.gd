@@ -4,9 +4,9 @@ const hue_start: float = 23
 const hue_end: float = 125
 
 @export_group("hsv")
-@export_range(0.0, 1.0, 0.01)  var hsv_s: float
-@export_range(0.0, 1.0, 0.01) var hsv_v: float
-@export_range(0.0, 1.0, 0.01)  var hsv_a: float = 1.0
+@export_range(0.0, 1.0, 0.01) var hsv_s: float = 0.5
+@export_range(0.0, 1.0, 0.01) var hsv_v: float = 0.5
+@export_range(0.0, 1.0, 0.01) var hsv_a: float = 1.0
 
 @onready var bunny: CharacterBody2D = $Bunny
 @onready var tileset: TileMapLayer = $TileMapLayer
