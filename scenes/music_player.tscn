@@ -10,6 +10,7 @@ script = ExtResource("2_ql6qh")
 [node name="Player" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_jxdhu")
 bus = &"Music"
+playback_type = 1
 
 [node name="IntervalTimer" type="Timer" parent="."]
 wait_time = 25.0
@@ -23,3 +24,4 @@ bus = &"Ambient"
 
 [connection signal="finished" from="Player" to="." method="_on_player_finished"]
 [connection signal="timeout" from="IntervalTimer" to="." method="_on_interval_timer_timeout"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

@@ -30,3 +30,6 @@ func _on_player_finished() -> void:
 
 func _on_interval_timer_timeout() -> void:
 	playNextSong()
+
+func _on_audio_stream_player_2d_finished() -> void:
+	$AudioStreamPlayer2D.play()
