@@ -6,8 +6,13 @@ const JUMP_VELOCITY = -400.0
 const GRAV_MOD_SCALAR = 2.5
 const accel = 900
 
+const run_asset_path := "res://assets/sounds/run/"
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var floor_timer: Timer = $FloorTimer
+@onready var run_samples := ResourceLoader.list_directory(run_asset_path)
+@onready var run_audio: AudioStreamPlayer2D = $RunAudio
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var run_sound_timer: Timer = $RunSoundTimer
 
 var can_jump: bool = false
 
@@ -25,9 +30,20 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("jump"):
 		jump()
+		
+	if Input.is_action_just_pressed("zoom"):
+		animation_player.play("zoom_out")
+	elif Input.is_action_just_released("zoom"):
+		animation_player.play_backwards("zoom_out")
+		
 
 	var direction := Input.get_axis("left", "right")
 	handle_direction(direction, delta)
+	
+	if abs(velocity.x) > 0 && is_on_floor() && run_sound_timer.is_stopped():
+		run_sound_timer.start()
+		run_audio.stream = AudioStreamMP3.load_from_file(run_asset_path + run_samples.get(randi() % len(run_samples)))
+		run_audio.play()
 
 	move_and_slide()
 

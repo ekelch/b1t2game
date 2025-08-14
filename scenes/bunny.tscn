@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://bc7pfwlnd3t1r"]
+[gd_scene load_steps=19 format=3 uid="uid://bc7pfwlnd3t1r"]
 
 [ext_resource type="Texture2D" uid="uid://dto5d5mdh2c3m" path="res://assets/sprites/running.png" id="1_0sl5a"]
 [ext_resource type="Script" uid="uid://d2ras2r6mk5dr" path="res://scenes/bunny.gd" id="1_ovlj1"]
 [ext_resource type="Texture2D" uid="uid://dog3nu0phrdqq" path="res://assets/sprites/idle.png" id="2_qn21b"]
+[ext_resource type="AudioStream" uid="uid://gooovo8ja3ey" path="res://assets/sounds/run/run1.mp3" id="4_kdyof"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ypmr"]
 atlas = ExtResource("2_qn21b")
@@ -84,6 +85,43 @@ animations = [{
 radius = 6.0
 height = 20.0
 
+[sub_resource type="Animation" id="Animation_ggkmg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCamera:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_kdyof"]
+resource_name = "zoom_out"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerCamera:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ggkmg"]
+_data = {
+&"RESET": SubResource("Animation_ggkmg"),
+&"zoom_out": SubResource("Animation_kdyof")
+}
+
 [node name="Bunny" type="CharacterBody2D"]
 script = ExtResource("1_ovlj1")
 
@@ -101,6 +139,28 @@ shape = SubResource("CapsuleShape2D_qn21b")
 
 [node name="FloorTimer" type="Timer" parent="."]
 wait_time = 0.5
+one_shot = true
+
+[node name="RunAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_kdyof")
+bus = &"Sounds"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ggkmg")
+}
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-19, -6)
+zoom = Vector2(2, 2)
+process_callback = 0
+limit_bottom = 190
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
+
+[node name="RunSoundTimer" type="Timer" parent="."]
+wait_time = 0.4
 one_shot = true
 
 [connection signal="timeout" from="FloorTimer" to="." method="_on_floor_timer_timeout"]
