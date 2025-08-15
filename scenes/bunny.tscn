@@ -102,7 +102,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_kdyof"]
 resource_name = "zoom_out"
-length = 0.25
+length = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -110,10 +110,10 @@ tracks/0/path = NodePath("PlayerCamera:zoom")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
+"times": PackedFloat32Array(0, 0.15),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(2, 2), Vector2(1, 1)]
+"values": [Vector2(2, 2), Vector2(1.2, 1.2)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ggkmg"]
@@ -155,12 +155,12 @@ unique_name_in_owner = true
 position = Vector2(-19, -6)
 zoom = Vector2(2, 2)
 process_callback = 0
-limit_bottom = 190
+limit_bottom = 230
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
 
 [node name="RunSoundTimer" type="Timer" parent="."]
-wait_time = 0.35
+wait_time = 0.33
 one_shot = true
 
 [connection signal="timeout" from="FloorTimer" to="." method="_on_floor_timer_timeout"]

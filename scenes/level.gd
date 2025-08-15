@@ -21,7 +21,7 @@ func _physics_process(_delta: float) -> void:
 	delta_y = (start_pos.global_position.y - bunny.global_position.y) / -end_pos.global_position.y
 	var mod = clamp(delta_y, 0, 1)
 	var hsv_h = hsv_h_start + mod * (hsv_h_end - hsv_h_start)
-	bunny.modulate = Color.from_hsv(hsv_h, hsv_s, hsv_v, hsv_a)
+	bunny.modulate = Color.from_hsv(hsv_h, mod * hsv_s, hsv_v, hsv_a)
 	tileset.modulate = bunny.modulate
 	background.modulate = Color.from_hsv(hsv_h, hsv_s / 2, hsv_v / 2, hsv_a)
 

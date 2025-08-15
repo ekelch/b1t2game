@@ -40,10 +40,10 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("left", "right")
 	handle_direction(direction, delta)
 	
-	if abs(velocity.x) > 0 && is_on_floor() && run_sound_timer.is_stopped():
-		run_sound_timer.start()
-		run_audio.stream = AudioStreamMP3.load_from_file(run_asset_path + run_samples.get(randi() % len(run_samples)))
-		run_audio.play()
+	#if abs(velocity.x) > 0 && is_on_floor() && run_sound_timer.is_stopped():
+		#run_sound_timer.start()
+		#run_audio.stream = AudioStreamMP3.load_from_file(run_asset_path + run_samples.get(randi() % len(run_samples)))
+		#run_audio.play()
 
 	move_and_slide()
 
@@ -60,6 +60,8 @@ func jump():
 	if can_jump:
 		velocity.y = JUMP_VELOCITY
 		can_jump = false
+		run_audio.stream = AudioStreamMP3.load_from_file(run_asset_path + run_samples.get(randi() % len(run_samples)))
+		run_audio.play()
 
 func _on_floor_timer_timeout() -> void:
 	can_jump = false

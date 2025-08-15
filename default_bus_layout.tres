@@ -1,13 +1,14 @@
 [gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://c2unug3uajqvi"]
 
-[sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_j3pel"]
-resource_name = "HighPassFilter"
+[sub_resource type="AudioEffectPitchShift" id="AudioEffectPitchShift_j3pel"]
+resource_name = "PitchShift"
+pitch_scale = 0.8
 
-[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
-resource_name = "Reverb"
-room_size = 0.35
-spread = 0.83
-wet = 0.33
+[sub_resource type="AudioEffectEQ6" id="AudioEffectEQ6_j3pel"]
+resource_name = "EQ6"
+band_db/1000_hz = -8.1
+band_db/3200_hz = -11.3
+band_db/10000_hz = -14.6
 
 [resource]
 bus/1/name = &"Music"
@@ -20,11 +21,11 @@ bus/2/name = &"Sounds"
 bus/2/solo = false
 bus/2/mute = false
 bus/2/bypass_fx = false
-bus/2/volume_db = -13.5101
+bus/2/volume_db = -12.4611
 bus/2/send = &"Master"
-bus/2/effect/0/effect = SubResource("AudioEffectHighPassFilter_j3pel")
+bus/2/effect/0/effect = SubResource("AudioEffectPitchShift_j3pel")
 bus/2/effect/0/enabled = true
-bus/2/effect/1/effect = SubResource("AudioEffectReverb_j3pel")
+bus/2/effect/1/effect = SubResource("AudioEffectEQ6_j3pel")
 bus/2/effect/1/enabled = true
 bus/3/name = &"Ambient"
 bus/3/solo = false
