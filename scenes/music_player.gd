@@ -2,11 +2,14 @@ extends Node2D
 
 const music_path := "res://assets/music/"
 @onready var resource_list = ResourceLoader.list_directory(music_path)
-@onready var player: AudioStreamPlayer2D = $Player
+@onready var player: AudioStreamPlayer2D = $MusicPlayer
 @onready var interval_timer: Timer = $IntervalTimer
 
-var pos: float
+var playback_position: float
 var current_song_i = 0
+
+func updatePos(update_position: Vector2) -> void:
+	position = update_position
 
 func playNextSong() -> void:
 	player.stop()
@@ -18,10 +21,10 @@ func playNextSong() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("playpause"):
 		if player.playing:
-			pos = player.get_playback_position()
+			playback_position = player.get_playback_position()
 			player.stop()
 		else:
-			player.play(pos)
+			player.play(playback_position)
 	if event.is_action_pressed("skip"):
 		playNextSong()
 	
@@ -30,6 +33,4 @@ func _on_player_finished() -> void:
 
 func _on_interval_timer_timeout() -> void:
 	playNextSong()
-
-func _on_audio_stream_player_2d_finished() -> void:
-	$AudioStreamPlayer2D.play()
+	

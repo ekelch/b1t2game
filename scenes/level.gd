@@ -18,9 +18,10 @@ extends Node2D
 var delta_y: float = 0
 
 func _physics_process(_delta: float) -> void:
-	modulate_colors()
+	modulate_color()
+	MusicPlayer.updatePos(bunny.position)
 
-func modulate_colors() -> void:
+func modulate_color() -> void:
 	delta_y = (start_pos.global_position.y - bunny.global_position.y) / -end_pos.global_position.y
 	var displacement_pct = clamp(delta_y, 0, 1)
 	var hsv_h = hsv_h_start + displacement_pct * (hsv_h_end - hsv_h_start)
@@ -33,10 +34,13 @@ func modulate_colors() -> void:
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("reset"):
-		get_tree().reload_current_scene()
+		reset_last_save_position()
 
 func _on_reset_timer_timeout() -> void:
-	get_tree().reload_current_scene()
-
+	reset_last_save_position()
+	
+func reset_last_save_position() -> void:
+	bunny.position = Vector2(0,0)
+	
 func _on_killzone_body_entered(_body: Node2D) -> void:
 	$Killzone/ResetTimer.start()
