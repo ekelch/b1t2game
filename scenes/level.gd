@@ -12,11 +12,13 @@ extends Node2D
 @onready var bunny: CharacterBody2D = $Bunny
 @onready var start_pos: Marker2D = $Markers/StartPos
 @onready var end_pos: Marker2D = $Markers/EndPos
+@onready var extra_platforms: Node2D = $ExtraPlatforms
 
 @onready var spawn_ref: PackedScene = preload("res://scenes/spawn_point.tscn")
 @onready var spawns: Node2D = $Spawns
 
 var delta_y: float = 0
+var bloom_index := 0
 
 func _physics_process(_delta: float) -> void:
 	modulate_color()
@@ -39,21 +41,17 @@ func _input(event: InputEvent) -> void:
 		checkSpecial()
 
 func checkSpecial():
-	for child in spawns.get_children():
-		if child.overlaps_body(bunny):
-			child.queue_free()
-			Ui.set_charge(100)
-			return
-	if Ui.charge >= 100 && bunny.is_on_floor():
+	if Ui.charge >= 100:
 		bloom()
 	else:
-		print('cannot place spawn')
+		print('cannot bloom')
 	
 func bloom():
 	Ui.set_charge(-100)
-	var new_spawn: SpawnPoint = spawn_ref.instantiate()
-	new_spawn.position = bunny.position
-	spawns.add_child(new_spawn)
+	for child in extra_platforms.get_children():
+		if !child.visible:
+			child.spawn()
+			return
 
 func reset_position() -> void:
 	bunny.velocity = Vector2.ZERO

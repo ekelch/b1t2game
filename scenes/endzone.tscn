@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgk0pppatceou"]
+
+[ext_resource type="Script" uid="uid://hgnfxmdscnus" path="res://scenes/endzone.gd" id="1_qgrhk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qgrhk"]
+size = Vector2(45, 26)
+
+[node name="Endzone" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_qgrhk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qgrhk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

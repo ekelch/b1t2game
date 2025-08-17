@@ -87,7 +87,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qn21b"]
 radius = 6.0
-height = 20.0
+height = 15.0
 
 [sub_resource type="Animation" id="Animation_ggkmg"]
 length = 0.001
@@ -156,8 +156,6 @@ libraries = {
 }
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(-19, -6)
 zoom = Vector2(2, 2)
 process_callback = 0
 limit_bottom = 230
