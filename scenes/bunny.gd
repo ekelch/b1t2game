@@ -7,10 +7,8 @@ const accel = 900
 
 var can_air_jump := true
 
-const run_asset_path := "res://assets/sounds/run/"
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var floor_timer: Timer = $FloorTimer
-@onready var run_samples := ResourceLoader.list_directory(run_asset_path)
 @onready var run_audio: AudioStreamPlayer2D = $RunAudio
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var run_sound_timer: Timer = $RunSoundTimer
@@ -55,5 +53,4 @@ func try_to_jump():
 	if is_on_floor() || (can_air_jump && !floor_timer.is_stopped()):
 		can_air_jump = false
 		velocity.y = JUMP_VELOCITY
-		run_audio.stream = AudioStreamMP3.load_from_file(run_asset_path + run_samples.get(randi() % len(run_samples)))
 		run_audio.play()

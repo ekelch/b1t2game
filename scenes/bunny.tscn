@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://d2ras2r6mk5dr" path="res://scenes/bunny.gd" id="1_ovlj1"]
 [ext_resource type="Shader" uid="uid://xxfuy46q8slf" path="res://shaders/primary_color_shader.gdshader" id="2_ggkmg"]
 [ext_resource type="Texture2D" uid="uid://dog3nu0phrdqq" path="res://assets/sprites/idle.png" id="2_qn21b"]
-[ext_resource type="AudioStream" uid="uid://gooovo8ja3ey" path="res://assets/sounds/run/run1.mp3" id="4_kdyof"]
+[ext_resource type="AudioStream" uid="uid://6sukahv6xk7c" path="res://assets/sounds/jump.mp3" id="5_ggkmg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l787c"]
 shader = ExtResource("2_ggkmg")
@@ -147,7 +147,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="RunAudio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_kdyof")
+stream = ExtResource("5_ggkmg")
 bus = &"Sounds"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
