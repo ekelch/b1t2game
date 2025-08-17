@@ -105,23 +105,14 @@ collision_layer = 2
 
 [node name="Pickups" type="Node2D" parent="."]
 
-[node name="FlowerPickup" parent="Pickups" instance=ExtResource("4_mx8sn")]
-position = Vector2(145, -57)
-
 [node name="FlowerPickup2" parent="Pickups" instance=ExtResource("4_mx8sn")]
 position = Vector2(370, -122)
-
-[node name="FlowerPickup3" parent="Pickups" instance=ExtResource("4_mx8sn")]
-position = Vector2(552, -264)
 
 [node name="FlowerPickup4" parent="Pickups" instance=ExtResource("4_mx8sn")]
 position = Vector2(391, -272)
 
 [node name="FlowerPickup5" parent="Pickups" instance=ExtResource("4_mx8sn")]
 position = Vector2(764, -498)
-
-[node name="FlowerPickup6" parent="Pickups" instance=ExtResource("4_mx8sn")]
-position = Vector2(536, -620)
 
 [node name="FlowerPickup7" parent="Pickups" instance=ExtResource("4_mx8sn")]
 position = Vector2(-620, -590)
@@ -133,7 +124,7 @@ position = Vector2(-135, -924)
 position = Vector2(-441, -845)
 
 [node name="FlowerPickup10" parent="Pickups" instance=ExtResource("4_mx8sn")]
-position = Vector2(-459, -492)
+position = Vector2(-493, -544)
 
 [connection signal="body_entered" from="Killzone" to="." method="_on_killzone_body_entered"]
 [connection signal="timeout" from="Killzone/ResetTimer" to="." method="_on_reset_timer_timeout"]

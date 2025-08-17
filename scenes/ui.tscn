@@ -38,6 +38,5 @@ layout_mode = 2
 size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_x4jx1")
 step = 1.0
-value = 80.0
 fill_mode = 3
 show_percentage = false

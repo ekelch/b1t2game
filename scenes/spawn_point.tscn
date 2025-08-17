@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bsqei2h8f31ch" path="res://assets/sprites/donut.png" id="1_ebynj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c3ytd"]
-radius = 18.0278
+radius = 35.0143
 
 [node name="SpawnPoint" type="Area2D"]
 collision_layer = 0

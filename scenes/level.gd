@@ -39,21 +39,28 @@ func _input(event: InputEvent) -> void:
 		checkSpecial()
 
 func checkSpecial():
-	#children.get(0).overlaps_body(bunny)
-	if Ui.bloom_bar.value >= 100:
+	for child in spawns.get_children():
+		if child.overlaps_body(bunny):
+			child.queue_free()
+			Ui.set_charge(100)
+			return
+	if Ui.charge >= 100 && bunny.is_on_floor():
 		bloom()
 	else:
 		print('cannot place spawn')
 	
 func bloom():
-	Ui.bloom_bar.value -= 100
+	Ui.set_charge(-100)
 	var new_spawn: SpawnPoint = spawn_ref.instantiate()
 	new_spawn.position = bunny.position
 	spawns.add_child(new_spawn)
 
 func reset_position() -> void:
 	bunny.velocity = Vector2.ZERO
-	bunny.position = get_last_spawn().position
+	if spawns.get_child_count() == 0:
+		bunny.position = Vector2.ZERO
+	else:
+		bunny.position = get_last_spawn().position
 
 func _on_reset_timer_timeout() -> void:
 	reset_position()
