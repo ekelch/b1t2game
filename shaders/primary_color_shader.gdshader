@@ -1,6 +1,6 @@
 shader_type canvas_item;
-global uniform vec3 apply_color: source_color;
+global uniform vec3 primary_color: source_color;
 
 void fragment() {
-	COLOR = vec4(apply_color, step(0.01, COLOR.a));
+	COLOR = vec4(primary_color, step(0.01, COLOR.a));
 }

@@ -1,5 +1,5 @@
 shader_type canvas_item;
-global uniform vec3 apply_color: source_color;
+global uniform vec3 primary_color: source_color;
 
 const float AMPLITUDE = 5.0;
 const float TIME_MOD = 3.0;
@@ -9,5 +9,5 @@ void vertex() {
 }
 
 void fragment() {
-	COLOR.rgb = apply_color;
+	COLOR.rgb = primary_color;
 }

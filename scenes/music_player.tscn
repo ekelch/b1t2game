@@ -16,7 +16,7 @@ playback_type = 1
 stream = ExtResource("3_l7xiw")
 autoplay = true
 bus = &"Ambient"
-parameters/looping = false
+parameters/looping = true
 
 [node name="IntervalTimer" type="Timer" parent="."]
 wait_time = 37.0

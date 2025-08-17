@@ -1,9 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://bc7pfwlnd3t1r"]
+[gd_scene load_steps=21 format=3 uid="uid://bc7pfwlnd3t1r"]
 
 [ext_resource type="Texture2D" uid="uid://dto5d5mdh2c3m" path="res://assets/sprites/running.png" id="1_0sl5a"]
 [ext_resource type="Script" uid="uid://d2ras2r6mk5dr" path="res://scenes/bunny.gd" id="1_ovlj1"]
+[ext_resource type="Shader" uid="uid://xxfuy46q8slf" path="res://shaders/primary_color_shader.gdshader" id="2_ggkmg"]
 [ext_resource type="Texture2D" uid="uid://dog3nu0phrdqq" path="res://assets/sprites/idle.png" id="2_qn21b"]
 [ext_resource type="AudioStream" uid="uid://gooovo8ja3ey" path="res://assets/sounds/run/run1.mp3" id="4_kdyof"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l787c"]
+shader = ExtResource("2_ggkmg")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ypmr"]
 atlas = ExtResource("2_qn21b")
@@ -126,6 +130,7 @@ _data = {
 script = ExtResource("1_ovlj1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_l787c")
 position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_1ypmr")
 animation = &"running"

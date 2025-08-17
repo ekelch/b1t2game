@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 const MAX_SPEED = 260.0
 const JUMP_VELOCITY = -400.0
 const GRAV_MOD_SCALAR = 2.5
@@ -15,6 +14,7 @@ const run_asset_path := "res://assets/sounds/run/"
 @onready var run_audio: AudioStreamPlayer2D = $RunAudio
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var run_sound_timer: Timer = $RunSoundTimer
+@onready var tile_map: TileMapLayer = $"../TileMapLayer"
 
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
@@ -50,7 +50,7 @@ func handle_direction(direction: float, delta: float):
 	else:
 		velocity.x = move_toward(velocity.x, 0, accel * delta)
 		sprite.play("idle")
-
+	
 func try_to_jump():
 	if is_on_floor() || (can_air_jump && !floor_timer.is_stopped()):
 		can_air_jump = false

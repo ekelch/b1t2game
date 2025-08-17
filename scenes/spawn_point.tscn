@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c53lna7cvp002"]
+
+[ext_resource type="Script" uid="uid://b05fu4s6j56tp" path="res://scenes/spawn_point.gd" id="1_c3ytd"]
+[ext_resource type="Texture2D" uid="uid://bsqei2h8f31ch" path="res://assets/sprites/donut.png" id="1_ebynj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c3ytd"]
+radius = 18.0278
+
+[node name="SpawnPoint" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_c3ytd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_c3ytd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ebynj")
